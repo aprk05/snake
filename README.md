@@ -1,59 +1,56 @@
-# Snake Game (C++ Console Application)
+#  Snake Game
 
-This is a simple console-based Snake game implemented in C++  using the Windows console. The game features a moving snake that grows when it eats a randomly placed fruit, and the game ends if the snake collides with the walls or itself. The game keeps track of the high score and saves it between sessions.
+## 1. About the Project
+The **Snake Game** is a simple console-based implementation of the classic Snake game written in **C++**. The game involves maneuvering a snake around a grid to collect food while avoiding collisions with the walls and itself.
 
-# Requirements
+## 2. Features
+- Classic Snake game mechanics
+- Score tracking with a **high score saving** feature
+- Simple **graphics**
+- **Play again** option after game over
+- Responsive controls using `W`, `A`, `S`, `D`
 
-## Installation
-1. Clone the repository:
-```bash
- git clone https://github.com/aprk05/snake.git
+## 3. Screenshots
+[Add screenshots here if available]
+
+## 4. Installation
+### Prerequisites
+- C++ Compiler (GCC, MSVC, Clang, etc.)
+- Windows OS (for `system("cls")` and `Sleep()` functions) or modify for cross-platform support
+
+### 5. Steps to Install and Run
+1. **Clone the repository**
+   ```sh
+   git clone https://github.com/aprk05/snake.git
+   cd snake
+   ```
+2. **Compile the code**
+   ```sh
+   g++ snake_game.cpp -o snake_game
+   ```
+3. **Run the game**
+   ```sh
+   ./snake_game
+   ```
+
+## 🎮 How to Play
+- **Move the snake**: `W` (Up), `A` (Left), `S` (Down), `D` (Right)
+- **Eat food** (`F`) to grow longer and gain points
+- **Avoid crashing** into walls or yourself
+- **Press 'X'** to exit the game
+
+## 6. File Structure
+```
+├── snake_game.cpp  # Main game source code
+├── highscores.txt  # High score storage
+├── README.md       # Project documentation
 ```
 
-2. Install dependencies:
-```bash
- npm install
- ```
+## 7. License
+This project is licensed under the **MIT License**.
 
-**Features**
-- Snake moves using WASD keys.
-- Fruits are randomly generated across the board which :
-  + Increases the length of snake.
-  + Increases the score by 10.
-- Game over when snake collides with walls or itself.
-- Simple console-based rendering.
-
-**Controls**
-- W - Move Up
-- A - Move Down
-- S - Move Left
-- D - Move Right
-- X - To exit the game
-- Y - Continue the game
-- N - Quit the game
-
-    
-**Requirements**
-- Windows OS
-- C++ Compiler
-
-## How to Run
-
-Compile the program using a C++ compiler:
-
-```
-g++ -o snakegame snakewindows.cpp
-```
-
-Run the compiled executable:
-```
-snakegame.exe
-```
-
-**Authors**
-
-Group Allknighters
-- 202401006
-- 202401010
-- 202401062
-- 202401066
+## 8. Future Improvements
+- Cross-platform support (Linux/Mac) with including other libraries instead of windows library
+- Game UI enhancements
+- Add levels and speed variations
+- save user data
