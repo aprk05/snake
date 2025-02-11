@@ -36,7 +36,17 @@ class Data {
     {
         return ID;
     }
+
+    void savedata()
+   {
+        ofstream file("data.txt);
+        if(file.is_open()){
+        file >> get_name() >>"/t">>get_ID();
+        file.close();
+   }
 };
+
+
 
 void loadHighScore() {
     ifstream file("highscores.txt");
@@ -217,16 +227,17 @@ public:
 
     void start() {
 
+        data D;
+
         string x;
         long long y;
 
         cin >> x>>y;
-        set_name(x);
-        cout << "Name : " <<get_name();
+        D.set_name(x);
+        cout << "Name : " <<D.get_name();
         
-        set_ID(y);
-        cout << "ID : "<<get_ID();
-        get_ID();
+        D.set_ID(y);
+        cout << "ID : "<<D.get_ID();
 
         
         while (true) {
