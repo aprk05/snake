@@ -53,3 +53,11 @@ This project is licensed under the **MIT License**.
 - Game UI enhancements
 - Add levels and speed variations
 - save user data
+  
+## 10. Contributions
+
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature-name`.
+3. Make your changes.
+4. Push your branch: `git push origin feature-name`.
+5. Create a pull request.
