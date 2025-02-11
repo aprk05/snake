@@ -107,31 +107,31 @@ public:
         return false;
     }
 
-    void grow() {
+    void grow() {                            //increase length of snake
         tailX.push_back(x);
         tailY.push_back(y);
         nTail++;
     }
 };
 
-class Fruit {
+class Fruit {                      //generates fruit
 public:
     int x, y;
     Fruit() {
         x = rand() % width;
         y = rand() % height;
     }
-    void reset() {
+    void regenrate() {
         x = rand() % width;
         y = rand() % height;
     }
 };
 
-class GameState {
+class GameState {                  //checks if game is over or not
 public:
     bool gameOver;
     int score;
-    GameState() {
+    GameState() {                 //constructor
         gameOver = false;
         score = 0;
     }
@@ -149,7 +149,7 @@ public:
     }
 
     void draw() const {
-        system("cls");
+        system("cls");              // windows library function to clear the screen
         for (int i = 0; i < width + 2; i++) cout << "#";
         cout << endl;
 
@@ -178,7 +178,7 @@ public:
         cout << "Score: " << state.score << " | High Score: " << highScore << endl;
     }
 
-    void input() {
+    void input() {                  // input given by user to move snake 
         if (_kbhit()) {
             char ch = _getch();
             switch (ch) {
@@ -191,13 +191,13 @@ public:
         }
     }
 
-    void logic() {
+    void logic() {                   // Logic for moving the snake
         snake.move();
         if (snake.checkCollision()) state.gameOver = true;
         if (snake.x == fruit.x && snake.y == fruit.y) {
             state.score += 10;
             if (state.score > highScore) highScore = state.score;
-            fruit.reset();    //new fruit appears
+            fruit.regenrate();    //new fruit appears
             snake.grow();     //length of snake increases
         }
     }
