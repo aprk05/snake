@@ -1,9 +1,8 @@
 #include <iostream>
-#include <windows.h>  // For Sleep and system("cls")
-#include <conio.h>    // For _kbhit and _getch
-#include <cstdlib>    // For rand and srand
-#include <ctime>      // For time
-#include <vector>     // For vector
+#include <windows.h>
+#include <conio.h>
+#include <cstdlib>
+#include <ctime>
 #include <fstream>
 
 using namespace std;
@@ -16,7 +15,7 @@ void loadHighScore() {
     ifstream file("highscores.txt");
     if (file.is_open()) {
         file >> highScore;
-        file.close();    // file closes
+        file.close();
     } else {
         highScore = 0;
     }
@@ -32,69 +31,84 @@ void saveHighScore() {
 
 enum eDirection { STOP = 0, LEFT, RIGHT, UP, DOWN };
 
+struct Node {
+    int x;
+    int y;
+    Node* next;
+
+    Node(int _x, int _y) {
+        x = _x;
+        y = _y;
+        next = nullptr;
+    }
+};
+
 class Snake {
 public:
-    int x, y;
-    vector<int> tailX, tailY;
-    int nTail;
+    Node* head;
+    Node* tail;
     eDirection dir;
 
-    Snake() {                                    //constructor called
-        x = width / 2;
-        y = height / 2;
-        nTail = 0;
+    Snake() {
+        head = new Node(width / 2, height / 2);
+        tail = head;
         dir = STOP;
     }
 
-    void move() {
-        int prevX = tailX.empty() ? x : tailX[0];
-        int prevY = tailY.empty() ? y : tailY[0];
-        int prev2X, prev2Y;
-        if (!tailX.empty()) {
-            tailX[0] = x;
-            tailY[0] = y;
-        }
-        for (int i = 1; i < nTail; i++) {
-            prev2X = tailX[i];
-            prev2Y = tailY[i];
-            tailX[i] = prevX;
-            tailY[i] = prevY;
-            prevX = prev2X;
-            prevY = prev2Y;
-        }
-        switch (dir) {
-        case LEFT: x--; break;
-        case RIGHT: x++; break;
-        case UP: y--; break;
-        case DOWN: y++; break;
-        default: break;
+    ~Snake() {
+        while (head) {
+            Node* temp = head;
+            head = head->next;
+            delete temp;
         }
     }
 
-    bool checkCollision() const {
-        if (x >= width || x < 0 || y >= height || y < 0)                      // if snake goes out of box then game overs
+    void move() {
+        int prevX = head->x, prevY = head->y;
+        switch (dir) {
+        case LEFT: head->x--; break;
+        case RIGHT: head->x++; break;
+        case UP: head->y--; break;
+        case DOWN: head->y++; break;
+        default: break;
+        }
+
+        Node* current = head->next;
+        int tempX, tempY;
+        while (current) {
+            tempX = current->x;
+            tempY = current->y;
+            current->x = prevX;
+            current->y = prevY;
+            prevX = tempX;
+            prevY = tempY;
+            current = current->next;
+        }
+    }
+
+    bool checkCollision() {
+        if (head->x >= width || head->x < 0 || head->y >= height || head->y < 0)
             return true;
-        for (int i = 0; i < nTail; i++) {
-            if (tailX[i] == x && tailY[i] == y)
+        Node* current = head->next;
+        while (current) {
+            if (current->x == head->x && current->y == head->y)
                 return true;
+            current = current->next;
         }
         return false;
     }
 
     void grow() {
-        tailX.push_back(x);
-        tailY.push_back(y);
-        nTail++;
+        Node* newTail = new Node(tail->x, tail->y);
+        tail->next = newTail;
+        tail = newTail;
     }
 };
 
 class Fruit {
 public:
     int x, y;
-    Fruit() {
-        x = rand() % width;
-        y = rand() % height;
-    }
+    Fruit() { reset(); }
     void reset() {
         x = rand() % width;
         y = rand() % height;
@@ -105,10 +119,7 @@ class GameState {
 public:
     bool gameOver;
     int score;
-    GameState() {
-        gameOver = false;
-        score = 0;
-    }
+    GameState() : gameOver(false), score(0) {}
 };
 
 class Game {
@@ -118,9 +129,7 @@ private:
     GameState state;
 
 public:
-    Game() {
-        srand(time(0));
-    }
+    Game() { srand(time(0)); }
 
     void draw() const {
         system("cls");
@@ -130,15 +139,18 @@ public:
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 if (j == 0) cout << "#";
-                if (i == snake.y && j == snake.x) cout << "O";
+                if (i == snake.head->y && j == snake.head->x) cout << "O";
                 else if (i == fruit.y && j == fruit.x) cout << "F";
                 else {
                     bool print = false;
-                    for (int k = 0; k < snake.nTail; k++) {
-                        if (snake.tailX[k] == j && snake.tailY[k] == i) {
+                    Node* current = snake.head->next;
+                    while (current) {
+                        if (current->x == j && current->y == i) {
                             cout << "o";
                             print = true;
+                            break;
                         }
+                        current = current->next;
                     }
                     if (!print) cout << " ";
                 }
@@ -168,43 +180,27 @@ public:
     void logic() {
         snake.move();
         if (snake.checkCollision()) state.gameOver = true;
-        if (snake.x == fruit.x && snake.y == fruit.y) {
+        if (snake.head->x == fruit.x && snake.head->y == fruit.y) {
             state.score += 10;
             if (state.score > highScore) highScore = state.score;
-            fruit.reset();    //new fruit appears
-            snake.grow();     //length of snake increases
-        }
-    }
-
-    void playAgain() {
-        char key;
-        cout << "Do you want to play again? (y/n): ";
-        cin >> key;
-        if (key == 'y' || key == 'Y') {
-            Game newGame;
-            newGame.start();
-        } else {
-            saveHighScore();
-            exit(0);
+            fruit.reset();
+            snake.grow();
         }
     }
 
     void start() {
-        
-        while (true) {
-            draw();           // for construction of box or grid
-            input();          // takes input from user
-            logic();          // fruit mechanism and check collision of snake
-            Sleep(100);       // to run program automatically after sometime
-            if (state.gameOver) {
-                cout << "Game Over! Final Score: " << state.score << endl;
-                if (state.score > highScore) {
-                    highScore = state.score;
-                    cout << "New High Score!" << endl;
-                }
-                playAgain();
-            }
+        while (!state.gameOver) {
+            draw();
+            input();
+            logic();
+            Sleep(100);
         }
+        cout << "Game Over! Final Score: " << state.score << endl;
+        if (state.score > highScore) {
+            highScore = state.score;
+            cout << "New High Score!" << endl;
+        }
+        saveHighScore();
     }
 };
 
