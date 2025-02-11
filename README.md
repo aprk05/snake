@@ -11,7 +11,6 @@ The **Snake Game** is a simple console-based implementation of the classic Snake
 - Responsive controls using `W`, `A`, `S`, `D`
 
 ## 3. Screenshots
-[Add screenshots here if available]
 
 ## 4. Installation
 ### Prerequisites
@@ -33,23 +32,23 @@ The **Snake Game** is a simple console-based implementation of the classic Snake
    ./snake_game
    ```
 
-## 🎮 How to Play
+## 6. How to Play
 - **Move the snake**: `W` (Up), `A` (Left), `S` (Down), `D` (Right)
 - **Eat food** (`F`) to grow longer and gain points
 - **Avoid crashing** into walls or yourself
 - **Press 'X'** to exit the game
 
-## 6. File Structure
+## 7. File Structure
 ```
 ├── snake_game.cpp  # Main game source code
 ├── highscores.txt  # High score storage
 ├── README.md       # Project documentation
 ```
 
-## 7. License
+## 8. License
 This project is licensed under the **MIT License**.
 
-## 8. Future Improvements
+## 9. Future Improvements
 - Cross-platform support (Linux/Mac) with including other libraries instead of windows library
 - Game UI enhancements
 - Add levels and speed variations
