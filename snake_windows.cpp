@@ -39,7 +39,7 @@ public:
     int nTail;
     eDirection dir;
 
-    Snake() {
+    Snake() {                                    //constructor called
         x = width / 2;
         y = height / 2;
         nTail = 0;
@@ -72,7 +72,7 @@ public:
     }
 
     bool checkCollision() const {
-        if (x >= width || x < 0 || y >= height || y < 0)
+        if (x >= width || x < 0 || y >= height || y < 0)                      // if snake goes out of box then game overs
             return true;
         for (int i = 0; i < nTail; i++) {
             if (tailX[i] == x && tailY[i] == y)
@@ -191,10 +191,10 @@ public:
 
     void start() {
         while (true) {
-            draw();
-            input();
-            logic();
-            Sleep(100);
+            draw();           // for construction of box or grid
+            input();          // takes input from user
+            logic();          // fruit mechanism and check collision of snake
+            Sleep(100);       // to run program automatically after sometime
             if (state.gameOver) {
                 cout << "Game Over! Final Score: " << state.score << endl;
                 if (state.score > highScore) {
