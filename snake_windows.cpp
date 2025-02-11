@@ -12,6 +12,32 @@ const int width = 20;
 const int height = 20;
 int highScore;
 
+class Data {
+
+    private:
+    string name;
+    long long ID;
+
+    void set_name(string name) {                      // using getter and setter fuctions for private entities so it can be accessed outside class also
+        this->name=name;
+    }
+
+    void set_ID(long long ID)
+    {
+        this->ID=ID;
+    }
+
+    string get_name()
+    {
+        return name;
+    }
+
+    long long get_ID()
+    {
+        return ID;
+    }
+};
+
 void loadHighScore() {
     ifstream file("highscores.txt");
     if (file.is_open()) {
@@ -190,6 +216,19 @@ public:
     }
 
     void start() {
+
+        string x;
+        long long y;
+
+        cin >> x>>y;
+        set_name(x);
+        cout << "Name : " <<get_name();
+        
+        set_ID(y);
+        cout << "ID : "<<get_ID();
+        get_ID();
+
+        
         while (true) {
             draw();           // for construction of box or grid
             input();          // takes input from user
