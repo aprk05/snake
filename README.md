@@ -38,7 +38,7 @@ snakegame.exe
 
 **Authors**
 
-Group 404
+Group Allknighters
 - 202401006
 - 202401010
 - 202401062
