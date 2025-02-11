@@ -11,12 +11,38 @@ using namespace std;
 const int width = 20;
 const int height = 20;
 int highScore;
- 
-void loadHighScore() {                           //file function is open and highscore is saved
+
+class Data {
+
+    private:
+    string name;
+    long long ID;
+
+    void set_name(string name) {                      // using getter and setter fuctions for private entities so it can be accessed outside class also
+        this->name=name;
+    }
+
+    void set_ID(long long ID)
+    {
+        this->ID=ID;
+    }
+
+    string get_name()
+    {
+        return name;
+    }
+
+    long long get_ID()
+    {
+        return ID;
+    }
+};
+
+void loadHighScore() {
     ifstream file("highscores.txt");
     if (file.is_open()) {
         file >> highScore;
-        file.close();
+        file.close();    // file closes
     } else {
         highScore = 0;
     }
@@ -171,15 +197,15 @@ public:
         if (snake.x == fruit.x && snake.y == fruit.y) {
             state.score += 10;
             if (state.score > highScore) highScore = state.score;
-            fruit.reset();
-            snake.grow();
+            fruit.reset();    //new fruit appears
+            snake.grow();     //length of snake increases
         }
     }
 
     void playAgain() {
-        char choice;
+        char key;
         cout << "Do you want to play again? (y/n): ";
-        cin >> choice;
+        cin >> key;
         if (choice == 'y' || choice == 'Y') {
             Game newGame;
             newGame.start();
@@ -190,6 +216,19 @@ public:
     }
 
     void start() {
+
+        string x;
+        long long y;
+
+        cin >> x>>y;
+        set_name(x);
+        cout << "Name : " <<get_name();
+        
+        set_ID(y);
+        cout << "ID : "<<get_ID();
+        get_ID();
+
+        
         while (true) {
             draw();           // for construction of box or grid
             input();          // takes input from user
