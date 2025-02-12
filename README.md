@@ -25,7 +25,7 @@ The **Snake Game** is a simple console-based implementation of the classic Snake
    ```
 2. **Compile the code**
    ```sh
-   g++ snake_game.cpp -o snake_game
+   g++ snake_windows.cpp -o snake_windows
    ```
 3. **Run the game**
    ```sh
