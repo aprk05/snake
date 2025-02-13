@@ -117,11 +117,11 @@ The `Snake` class is responsible for handling the snake's movement, growth, and 
 
 The Fruit class is responsible for generating food for the snake at random positions within the game boundaries.
 
-## Attributes:
+### Attributes:
 
 -**`int x, y;`** - Stores the position of the fruit on the grid.
 
-## Methods:
+### Methods:
 
 -**`Fruit()`;**\
    -Constructor that initializes the fruit at a random position within the game boundaries.\
