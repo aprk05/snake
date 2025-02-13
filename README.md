@@ -25,27 +25,21 @@ itself or with walls then game will be over.
 - GCC (MinGW) (for Windows)
 
 ## Libraries
--```windows.h```    for 'cls' and sleep function
 
--```iostream.h```   for basic commands
-
--```conio.h```      for _kbhit and _getch
-
--```cstdlib```      for rand and srand
-
--```ctime```        for time functions
-
--```vector```       for vector
-
--```fstream```      for file handling
-
+- `windows.h` for 'cls' and sleep function
+- `iostream.h` for basic commands
+- `conio.h` for _kbhit and _getch
+- `cstdlib` for rand and srand
+- `ctime` for time
+- `vector` for vector
+- `fstream` for file handling
+  
 ## How to Compile and Run
 
 ### On Windows
 #### Using GCC (MinGW):
 ```
 g++ snake_windows.cpp -o snake_windows
-
 ```
 ```
 ./snake_windows
@@ -62,11 +56,41 @@ g++ snake_windows.cpp -o snake_windows
 - Smooth animations
 
 ## Data Structures Used
-### 1. Class: Food
+### 1. Class: Snake
+
+The `Snake` class is responsible for handling the snake's movement, growth, and collision detection.
+
+#### Attributes:
+
+- `int x, y;` - Stores the current position of the snake's head.
+- `vector<int> tailX, tailY;` - Stores the positions of the snake's tail segments.
+- `int nTail;` - Stores the current length of the snake's tail.
+- `eDirection dir;` - Represents the current direction of movement.
+
+#### Methods:
+
+- `Snake()` - Constructor that initializes the snake in the center of the game area.
+  
+- `void move();`
+  - Updates the snake's position based on its current direction.
+  - Shifts the tail segments to follow the head's previous position.
+  - Adjusts each tail segment to match the movement of the preceding segment.
+  - Changes the `x` or `y` coordinate based on the movement direction (LEFT, RIGHT, UP, DOWN).
+    
+- `bool checkCollision() const;`
+  - Checks if the snake's head position (`x`, `y`) is outside the game boundaries.
+  - Iterates through the tail segments to determine if the head collides with any part of the tail.
+  - Returns `true` if a collision is detected, indicating game over. if not game will continue
+    
+- `void grow();`
+  - Appends a new segment at the current position of the snake's head.
+  - Increases the tail length (`nTail`) to reflect the new segment.
+  - Ensures the new segment follows the movement of the snake seamlessly.
 
 
-### 2. Class: Snake
-(Explain the Snake class and its attributes/methods)
+
+### 2. Class: Fruit
+
 
 ### 3. Class: Game
 (Explain the Game class and its attributes/methods)
