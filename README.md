@@ -25,19 +25,19 @@ itself or with walls then game will be over.
 - GCC (MinGW) (for Windows)
 
 ## Libraries
-windows.h for 'cls' and sleep function
+-```windows.h```    for 'cls' and sleep function
 
-iostream.h for basic commands
+-```iostream.h```   for basic commands
 
-conio.h for _kbhit and _getch
+-```conio.h```      for _kbhit and _getch
 
-cstdlib for rand and srand
+-```cstdlib```      for rand and srand
 
-ctime for time
+-```ctime```        for time functions
 
-vector for vector
+-```vector```       for vector
 
-fstream for file handling
+-```fstream```      for file handling
 
 ## How to Compile and Run
 
