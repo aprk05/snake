@@ -195,10 +195,11 @@ The `GameState` class manages the state of the game, including tracking the scor
 - `_getch` pauses output console until a key is pressed
 
 ## Future Enhancements
-- Implementing different difficulty levels
-- Adding sound effects and animations
-- Multiplayer mode
 
+- Implementing different difficulty levels( this can be done by reducing sleep timer so to increase speed of snake)
+- Adding sound effects and animations(can be done using a beep function)
+  
 ## License
-(Specify the open-source license if applicable)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
