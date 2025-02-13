@@ -1,7 +1,8 @@
 # Snake Game
 
 ## Created by:
-Group 404\
+Group **404**\
+
 1.Parth Agrawal\
 2.Abhijeet Kujur\
 3.Heer Bhanushali\
@@ -91,9 +92,63 @@ The `Snake` class is responsible for handling the snake's movement, growth, and 
 
 ### 2. Class: Fruit
 
+The Fruit class is responsible for generating food for the snake at random positions within the game boundaries.
+
+## Attributes:
+
+-`int x, y;` - Stores the position of the fruit on the grid.
+
+## Methods:
+
+-`Fruit()`;
+   -Constructor that initializes the fruit at a random position within the game boundaries.\
+   -Uses rand() % width and rand() % height to determine x and y coordinates.\
+
+-`void reset()`;
+   -Resets the fruit's position to a new random location after being consumed by the snake.\
+   -Calls rand() % width and rand() % height again to update x and y.
+
 
 ### 3. Class: Game
-(Explain the Game class and its attributes/methods)
+
+The `Game` class handles the overall game logic, rendering, and user interaction.
+
+#### Attributes:
+
+- `Snake snake;` - An instance of the `Snake` class representing the player-controlled snake.
+- `Fruit fruit;` - An instance of the `Fruit` class representing the food.
+- `GameState state;` - Holds game-related state variables such as score and game-over status.
+
+#### Methods:
+
+- **`Game();`**
+     - Constructor that initializes the game and sets up the random number generator using `srand(time(0))`.
+      
+- **`void draw() const;`**
+   - Clears the screen and redraws the game grid.
+   - Displays the snake, fruit, walls, and the current score.
+     
+- **`void input();`**
+  - Captures user input from the keyboard and changes the snake's direction accordingly.
+  - Pressing 'x' ends the game.
+    
+- **`void logic();`**
+  - Updates the game state each frame.
+  - Moves the snake, checks for collisions, and handles food consumption.
+  - If the snake eats a fruit, the score increases, and the snake grows.
+    
+- **`void playAgain();`**
+  - Prompts the player to restart the game or exit after game over.
+  - If the player chooses to restart, a new `Game` instance is created.
+    
+- **`void start();`**
+  - The main game loop that continuously runs:
+    
+    - Calls `draw()` to render the game state.
+    - Calls `input()` to capture user input.
+    - Calls `logic()` to update the game mechanics.
+    - Uses `Sleep(100);` to control game speed.
+    - Ends the game if the player loses and prompts for replay.
 
 ## Other Data Structures Used
 - Data structures such as array, 2Darray for grid making,vectors are used.for random value generator we have used ```rand``` and ```srand``` functions
