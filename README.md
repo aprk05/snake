@@ -22,17 +22,22 @@ itself or with walls then game will be over.
 - Windows
 
 ## Compiler
-- Clang (for MacOS)
 - GCC (MinGW) (for Windows)
 
 ## Libraries
--```windows.h```   for 'cls' and sleep function
--```iostream.h```  for basic commands
--```conio.h```     for _kbhit and _getch
--```cstdlib```     for rand and srand
--```ctime```       for time
--```vector```      for vector
--```fstream```
+windows.h for 'cls' and sleep function
+
+iostream.h for basic commands
+
+conio.h for _kbhit and _getch
+
+cstdlib for rand and srand
+
+ctime for time
+
+vector for vector
+
+fstream for file handling
 
 ## How to Compile and Run
 
