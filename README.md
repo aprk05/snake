@@ -1,56 +1,82 @@
-#  Snake Game
+# Snake Game
 
-## 1. About the Project
-The **Snake Game** is a simple console-based implementation of the classic Snake game written in **C++**. The game involves maneuvering a snake around a grid to collect food while avoiding collisions with the walls and itself.
+## Created by:
+Group 404
+Parth Agrawal
+Abhijeet Kujur
+Heer Bhanushali
+Harsh Asnani
 
-## 2. Features
-- Classic Snake game mechanics
-- Score tracking with a **high score saving** feature
-- Simple **graphics**
-- **Play again** option after game over
-- Responsive controls using `W`, `A`, `S`, `D`
+## Introduction
+The Snake Game is a classic arcade game where the player controls a snake that moves around the screen, consuming food and growing in length. The challenge is to navigate the snake without colliding with the walls or itself.This Snake game is made using basic C++ codes and some concepts of Object Oriented Programming.
 
-## 3. Screenshots
+## Objective
+The goal of the game is to control the snake and eat as much food as possible to increase the score, all while avoiding collisions with the walls and the snake's own body.If snake collides with
+itself or with walls then game will be over. 
 
-## 4. Installation
-### Prerequisites
-- C++ Compiler (GCC, MSVC, Clang, etc.)
-- Windows OS (for `system("cls")` and `Sleep()` functions) or modify for cross-platform support
+## Requirements
+- Operating System: Windows as we have included ```windows.h``` library it would run in windows terminal
+- Compiler: C++ Compiler (GCC MinGW or MSVC)
 
-### 5. Steps to Install and Run
-1. **Clone the repository**
-   ```sh
-   git clone https://github.com/aprk05/snake.git
-   cd snake
-   ```
-2. **Compile the code**
-   ```sh
-   g++ snake_windows.cpp -o snake_windows
-   ```
-3. **Run the game**
-   ```sh
-   ./snake_game
-   ```
+## Platform
+- Windows
 
-## 6. How to Play
-- **Move the snake**: `W` (Up), `A` (Left), `S` (Down), `D` (Right)
-- **Eat food** (`F`) to grow longer and gain points
-- **Avoid crashing** into walls or yourself
-- **Press 'X'** to exit the game
+## Compiler
+- Clang (for MacOS)
+- GCC (MinGW) (for Windows)
 
-## 7. File Structure
+## Libraries
+-```windows.h```   for 'cls' and sleep function
+-```iostream.h```  for basic commands
+-```conio.h```     for _kbhit and _getch
+-```cstdlib```     for rand and srand
+-```ctime```       for time
+-```vector```      for vector
+-```fstream```
+
+## How to Compile and Run
+
+### On Windows
+#### Using GCC (MinGW):
 ```
-├── snake_game.cpp  # Main game source code
-├── highscores.txt  # High score storage
-├── README.md       # Project documentation
+g++ snake_windows.cpp -o snake_windows
+
+```
+```
+./snake_windows
 ```
 
+## Display of the Game
+-its a simple snake game with simple UI/UX pretty easy to understand and play.
+
+## Key Features
+- Classic snake movement mechanics
+- Food consumption and snake growth
+- Collision detection
+- Score tracking/High Score Display
+- Smooth animations
+
+## Data Structures Used
+### 1. Class: Food
 
 
-## 8. Future Improvements
-- Cross-platform support (Linux/Mac) with including other libraries instead of windows library
-- Game UI enhancements
-- Add levels and speed variations
-- save user data
-  
+### 2. Class: Snake
+(Explain the Snake class and its attributes/methods)
+
+### 3. Class: Game
+(Explain the Game class and its attributes/methods)
+
+## Other Data Structures Used
+- Data structures such as array, 2Darray for grid making,vectors are used.for random value generator we have used ```rand``` and ```srand``` functions
+
+## Future Enhancements
+- Implementing different difficulty levels
+- Adding sound effects and animations
+- Multiplayer mode
+
+## Credits
+(Provide credits to contributors, if any)
+
+## License
+(Specify the open-source license if applicable)
 
