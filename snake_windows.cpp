@@ -30,6 +30,19 @@ void saveHighScore() {
     }
 }
 
+void instructions()
+{
+    cout << "Steps and instructions to play the game"<<endl;
+    cout << "Cursor keys -"<<endl;
+    cout << "1.W- UP"<<endl;
+    cout << "2.A- LEFT"<<endl;
+    cout << "3.D- RIGHT"<<endl;
+    cout << "4.S- DOWN"<<endl;
+    cout << "5.X- Quit the game"<<endl;
+
+    Sleep(10000); 
+}
+
 enum eDirection { STOP = 0, LEFT, RIGHT, UP, DOWN };
 
 class Snake {
@@ -218,6 +231,7 @@ public:
 };
 
 int main() {
+    instructions();
     loadHighScore();
     Game game;
     game.start();
