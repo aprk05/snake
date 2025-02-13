@@ -1,7 +1,7 @@
 # Snake Game
 
 ## Created by:
-Group **404**\
+Group **404**
 
 1.Parth Agrawal\
 2.Abhijeet Kujur\
@@ -70,20 +70,20 @@ The `Snake` class is responsible for handling the snake's movement, growth, and 
 
 #### Methods:
 
-- `Snake()` - Constructor that initializes the snake in the center of the game area.
+- **`Snake()`** - Constructor that initializes the snake in the center of the game area.
   
-- `void move();`
+- **`void move();`**
   - Updates the snake's position based on its current direction.
   - Shifts the tail segments to follow the head's previous position.
   - Adjusts each tail segment to match the movement of the preceding segment.
   - Changes the `x` or `y` coordinate based on the movement direction (LEFT, RIGHT, UP, DOWN).
     
-- `bool checkCollision() const;`
+- **`bool checkCollision() const;`**
   - Checks if the snake's head position (`x`, `y`) is outside the game boundaries.
   - Iterates through the tail segments to determine if the head collides with any part of the tail.
   - Returns `true` if a collision is detected, indicating game over. if not game will continue
     
-- `void grow();`
+- **`void grow();`**
   - Appends a new segment at the current position of the snake's head.
   - Increases the tail length (`nTail`) to reflect the new segment.
   - Ensures the new segment follows the movement of the snake seamlessly.
@@ -96,15 +96,15 @@ The Fruit class is responsible for generating food for the snake at random posit
 
 ## Attributes:
 
--`int x, y;` - Stores the position of the fruit on the grid.
+-**`int x, y;`** - Stores the position of the fruit on the grid.
 
 ## Methods:
 
--`Fruit()`;
+-**`Fruit()`;**\
    -Constructor that initializes the fruit at a random position within the game boundaries.\
-   -Uses rand() % width and rand() % height to determine x and y coordinates.\
+   -Uses rand() % width and rand() % height to determine x and y coordinates.
 
--`void reset()`;
+-**`void reset()`;**\
    -Resets the fruit's position to a new random location after being consumed by the snake.\
    -Calls rand() % width and rand() % height again to update x and y.
 
