@@ -5,7 +5,7 @@ Group 404\
 1.Parth Agrawal\
 2.Abhijeet Kujur\
 3.Heer Bhanushali\
-4.Harsh Asnani\
+4.Harsh Asnani
 
 ## Introduction
 The Snake Game is a classic arcade game where the player controls a snake that moves around the screen, consuming food and growing in length. The challenge is to navigate the snake without colliding with the walls or itself.This Snake game is made using basic C++ codes and some concepts of Object Oriented Programming.
