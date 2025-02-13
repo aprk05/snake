@@ -15,6 +15,19 @@ The Snake Game is a classic arcade game where the player controls a snake that m
 The goal of the game is to control the snake and eat as much food as possible to increase the score, all while avoiding collisions with the walls and the snake's own body.If snake collides with
 itself or with walls then game will be over. 
 
+## Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/aprk/snake.git
+   cd snake
+   ```
+2. Install dependencies (if any):
+   ```sh
+   `conio.h` library should be there
+   `windows.h` library should be there
+   ```
+   
 ## Requirements
 - Operating System: Windows as we have included ```windows.h``` library it would run in windows terminal
 - Compiler: C++ Compiler (GCC MinGW or MSVC)
@@ -34,7 +47,7 @@ itself or with walls then game will be over.
 - `ctime` for time
 - `vector` for vector
 - `fstream` for file handling
-  
+
 ## How to Compile and Run
 
 ### On Windows
@@ -55,6 +68,17 @@ g++ snake_windows.cpp -o snake_windows
 - Collision detection
 - Score tracking/High Score Display
 - Smooth animations
+
+## How to Play
+
+1. Use the following keys to control the snake:
+   - `W` - Move Up
+   - `S` - Move Down
+   - `A` - Move Left
+   - `D` - Move Right
+   - `X` - Quit the game
+2. The goal is to eat the fruit (`F`) to grow the snake and increase your score.
+3. Avoid colliding with the walls or the snake's own body.
 
 ## Data Structures Used
 ### 1. Class: Snake
@@ -87,7 +111,6 @@ The `Snake` class is responsible for handling the snake's movement, growth, and 
   - Appends a new segment at the current position of the snake's head.
   - Increases the tail length (`nTail`) to reflect the new segment.
   - Ensures the new segment follows the movement of the snake seamlessly.
-
 
 
 ### 2. Class: Fruit
@@ -150,16 +173,31 @@ The `Game` class handles the overall game logic, rendering, and user interaction
     - Uses `Sleep(100);` to control game speed.
     - Ends the game if the player loses and prompts for replay.
 
+### 4. Class: GameState
+
+The `GameState` class manages the state of the game, including tracking the score and determining if the game is over.
+
+#### Attributes:
+
+- `bool gameOver;` - A flag that indicates whether the game is over.
+- `int score;` - Stores the player's current score.
+
+#### Methods:
+
+- **`GameState();`**
+  - Constructor that initializes the game state.
+  - Sets `gameOver` to `false` and `score` to `0` at the start of the game.
+
+
 ## Other Data Structures Used
-- Data structures such as array, 2Darray for grid making,vectors are used.for random value generator we have used ```rand``` and ```srand``` functions
+- Data structures such as array, 2Darray for grid making,vectors are used.for random value generator we have used ```rand``` and ```srand``` functions.
+- functions like `_khbit` is used to ensure that if a key is pressed or not on keyboard
+- `_getch` pauses output console until a key is pressed
 
 ## Future Enhancements
 - Implementing different difficulty levels
 - Adding sound effects and animations
 - Multiplayer mode
-
-## Credits
-(Provide credits to contributors, if any)
 
 ## License
 (Specify the open-source license if applicable)
