@@ -42,18 +42,27 @@ public:
     Snake() {                                    //constructor called
         x = width / 2;
         y = height / 2;
-        nTail = 0;
-        dir = STOP;
+        nTail = 2;
+        dir = RIGHT;
+
+        tailX.resize(2);                       // if not resized then game does not run
+        tailY.resize(2);
+
+        for(int i=0;i<nTail;i++)
+        {
+            tailX[i]=x-(i+1);
+            tailY[i]=y;
+        }
     }
 
     void move() {
-        int prevX = tailX.empty() ? x : tailX[0];
-        int prevY = tailY.empty() ? y : tailY[0];
+        int prevX = tailX[0];
+        int prevY = tailY[0];
         int prev2X, prev2Y;
-        if (!tailX.empty()) {
+    
             tailX[0] = x;
             tailY[0] = y;
-        }
+
         for (int i = 1; i < nTail; i++) {
             prev2X = tailX[i];
             prev2Y = tailY[i];
