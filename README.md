@@ -190,7 +190,7 @@ The `GameState` class manages the state of the game, including tracking the scor
 
 
 ## Other Data Structures Used
-- Data structures such as array, 2Darray for grid making,vectors are used.for random value generator we have used ```rand``` and ```srand``` functions.
+- Data structures such as array, 2Darray for grid making,vectors for snake movement are used.for random value generator we have used ```rand``` and ```srand``` functions.
 - functions like `_khbit` is used to ensure that if a key is pressed or not on keyboard
 - `_getch` pauses output console until a key is pressed
 
