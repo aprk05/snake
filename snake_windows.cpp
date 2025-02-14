@@ -32,24 +32,26 @@ void saveHighScore() {
 
 void instructions()
 {
-    cout << "Steps and instructions to play the game"<<endl;
-    cout << "Cursor keys -"<<endl;
-    cout << "1.W- UP"<<endl;
-    cout << "2.A- LEFT"<<endl;
-    cout << "3.D- RIGHT"<<endl;
-    cout << "4.S- DOWN"<<endl;
-    cout << "5.X- Quit the game"<<endl;
-
-    Sleep(10000); 
+    cout << "Steps and instructions to play the game" << endl;
+    cout << "Cursor keys -" << endl;
+    cout << "1. W - UP" << endl;
+    cout << "2. A - LEFT" << endl;
+    cout << "3. D - RIGHT" << endl;
+    cout << "4. S - DOWN" << endl;
+    cout << "5. X - Quit the game" << endl;
+    cout << "Select difficulty level:" << endl;
+    cout << "1. Easy" << endl;
+    cout << "2. Medium" << endl;
+    cout << "3. Hard" << endl;
 }
 
 enum eDirection { STOP = 0, LEFT, RIGHT, UP, DOWN };
 
 class Snake {
 public:
-    int x, y;                    //snake's head location
+    int x, y;
     vector<int> tailX, tailY;
-    int nTail;                   //length of tail
+    int nTail;
     eDirection dir;
 
     Snake() {                                    //constructor called
@@ -61,22 +63,22 @@ public:
         tailX.resize(2);                       // if not resized then game does not run
         tailY.resize(2);
 
-        for(int i=0;i<nTail;i++)
+        for(int i = 0; i < nTail; i++)
         {
-            tailX[i]=x-(i+1);
-            tailY[i]=y;
+            tailX[i] = x - (i + 1);
+            tailY[i] = y;
         }
     }
 
     void move() {
-        int prevX = tailX[0];      //storing snake's first tail segment
+        int prevX = tailX[0];
         int prevY = tailY[0];
         int prev2X, prev2Y;
-    
-            tailX[0] = x;
-            tailY[0] = y;
 
-        for (int i = 1; i < nTail; i++) {   //moving snake tail all segments one step ahead
+        tailX[0] = x;
+        tailY[0] = y;
+
+        for (int i = 1; i < nTail; i++) {
             prev2X = tailX[i];
             prev2Y = tailY[i];
             tailX[i] = prevX;
@@ -93,8 +95,8 @@ public:
         }
     }
 
-    bool checkCollision() const {       //if collided by walls or itself then game will be over
-        if (x >= width || x < 0 || y >= height || y < 0)                 
+    bool checkCollision() const {
+        if (x >= width || x < 0 || y >= height || y < 0)                      // if snake goes out of box then game overs
             return true;
         for (int i = 0; i < nTail; i++) {
             if (tailX[i] == x && tailY[i] == y)
@@ -103,14 +105,14 @@ public:
         return false;
     }
 
-    void grow() {         //snake tail grows
+    void grow() {
         tailX.push_back(x);
         tailY.push_back(y);
         nTail++;
     }
 };
 
-class Fruit {      //generation of fruit
+class Fruit {
 public:
     int x, y;
     Fruit() {
@@ -137,40 +139,65 @@ class Game {
 private:
     Snake snake;
     Fruit fruit;
-    GameState state;
+    int difficulty;
 
 public:
+    GameState state;
     Game() {
         srand(time(0));
+        difficulty = 1; // Default to easy
     }
 
-    void draw() const {   //for formation of grid,fruit and snake tail
-        system("cls");
-        for (int i = 0; i < width + 2; i++) cout << "#";
-        cout << endl;
+    void setDifficulty(int level) {
+        difficulty = level;
+    }
 
+    void draw() const {
+        system("cls");
+        for (int i = 0; i < width + 2; i++) {
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11); // Light Blue for grid
+            cout << "#";
+        }
+        cout << endl;
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (j == 0) cout << "#";
-                if (i == snake.y && j == snake.x) cout << "O";
-                else if (i == fruit.y && j == fruit.x) cout << "F";
-                else {
+                if (j == 0) {
+                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11); // Light Blue for grid
+                    cout << "#";
+                }
+                if (i == snake.y && j == snake.x) {
+                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10); // Light Green for snake
+                    cout << "O";
+                } else if (i == fruit.y && j == fruit.x) {
+                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12); // Light Red for fruit
+                    cout << "F";
+                } else {
                     bool print = false;
                     for (int k = 0; k < snake.nTail; k++) {
                         if (snake.tailX[k] == j && snake.tailY[k] == i) {
+                            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10); // Light Green for snake
                             cout << "o";
                             print = true;
                         }
                     }
-                    if (!print) cout << " ";
+                    if (!print) {
+                        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // Default color for empty space
+                        cout << " ";
+                    }
                 }
-                if (j == width - 1) cout << "#";
+                if (j == width - 1) {
+                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11); // Light Blue for grid
+                    cout << "#";
+                }
             }
             cout << endl;
         }
-
-        for (int i = 0; i < width + 2; i++) cout << "#";
+        for (int i = 0; i < width + 2; i++) {
+            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 11); // Light Blue for grid
+            cout << "#";
+        }
         cout << endl;
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7); // Default color for text
         cout << "Score: " << state.score << " | High Score: " << highScore << endl;
     }
 
@@ -204,6 +231,7 @@ public:
         cin >> key;
         if (key == 'y' || key == 'Y') {
             Game newGame;
+            newGame.setDifficulty(difficulty);
             newGame.start();
         } else {
             saveHighScore();
@@ -212,12 +240,11 @@ public:
     }
 
     void start() {
-        
         while (true) {
             draw();           // for construction of box or grid
             input();          // takes input from user
             logic();          // fruit mechanism and check collision of snake
-            Sleep(100);       // to run program automatically after sometime
+            Sleep(300 / difficulty);       // to run program automatically after sometime
             if (state.gameOver) {
                 cout << "Game Over! Final Score: " << state.score << endl;
                 if (state.score > highScore) {
@@ -233,7 +260,14 @@ public:
 int main() {
     instructions();
     loadHighScore();
+
+    int difficulty;
+    cout << "Enter difficulty level (1-Easy, 2-Medium, 3-Hard): ";
+    cin >> difficulty;
+
     Game game;
+    game.setDifficulty(difficulty);
     game.start();
+
     return 0;
 }
