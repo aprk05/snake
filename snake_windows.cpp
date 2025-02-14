@@ -244,7 +244,7 @@ public:
             draw();           // for construction of box or grid
             input();          // takes input from user
             logic();          // fruit mechanism and check collision of snake
-            Sleep(300 / difficulty);       // to run program automatically after sometime
+            Sleep(300 / difficulty);       // for snake speed
             if (state.gameOver) {
                 cout << "Game Over! Final Score: " << state.score << endl;
                 if (state.score > highScore) {
