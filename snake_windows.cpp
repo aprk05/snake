@@ -47,9 +47,9 @@ enum eDirection { STOP = 0, LEFT, RIGHT, UP, DOWN };
 
 class Snake {
 public:
-    int x, y;
+    int x, y;                    //snake's head location
     vector<int> tailX, tailY;
-    int nTail;
+    int nTail;                   //length of tail
     eDirection dir;
 
     Snake() {                                    //constructor called
@@ -69,14 +69,14 @@ public:
     }
 
     void move() {
-        int prevX = tailX[0];
+        int prevX = tailX[0];      //storing snake's first tail segment
         int prevY = tailY[0];
         int prev2X, prev2Y;
     
             tailX[0] = x;
             tailY[0] = y;
 
-        for (int i = 1; i < nTail; i++) {
+        for (int i = 1; i < nTail; i++) {   //moving snake tail all segments one step ahead
             prev2X = tailX[i];
             prev2Y = tailY[i];
             tailX[i] = prevX;
@@ -93,8 +93,8 @@ public:
         }
     }
 
-    bool checkCollision() const {
-        if (x >= width || x < 0 || y >= height || y < 0)                      // if snake goes out of box then game overs
+    bool checkCollision() const {       //if collided by walls or itself then game will be over
+        if (x >= width || x < 0 || y >= height || y < 0)                 
             return true;
         for (int i = 0; i < nTail; i++) {
             if (tailX[i] == x && tailY[i] == y)
@@ -103,14 +103,14 @@ public:
         return false;
     }
 
-    void grow() {
+    void grow() {         //snake tail grows
         tailX.push_back(x);
         tailY.push_back(y);
         nTail++;
     }
 };
 
-class Fruit {
+class Fruit {      //generation of fruit
 public:
     int x, y;
     Fruit() {
@@ -144,7 +144,7 @@ public:
         srand(time(0));
     }
 
-    void draw() const {
+    void draw() const {   //for formation of grid,fruit and snake tail
         system("cls");
         for (int i = 0; i < width + 2; i++) cout << "#";
         cout << endl;
